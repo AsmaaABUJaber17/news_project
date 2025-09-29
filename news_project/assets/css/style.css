@@ -1,0 +1,451 @@
+/* Clean News Theme — Bootstrap-free (no framework) */
+/* Colors */
+:root{
+  --bg:#f7f7fb;
+  --surface:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --primary:#059669;      /* emerald */
+  --primary-600:#10b981;
+  --accent:#f59e0b;
+  --danger:#dc2626;
+  --ring:rgba(16,185,129,.25);
+  --shadow:0 10px 30px rgba(0,0,0,.07);
+  --radius:14px;
+  --header-h:64px;
+  --container:1100px;
+}
+
+/* Base */
+*{ box-sizing: border-box; }
+html, body{ height:100%; }
+body{
+  margin:0;
+  font-family:"Comic Sans MS", "Segoe UI", "Noto Kufi Arabic", sans-serif;
+  background:
+    radial-gradient(1200px 600px at 120% -100%, rgba(16,185,129,.05), transparent 55%),
+    radial-gradient(900px 480px at -20% 120%, rgba(2,132,199,.045), transparent 55%),
+    var(--bg);
+  color:var(--text);
+  direction: rtl;
+  line-height:1.7;
+}
+
+/* Layout helpers */
+.container{ width:min(95%, var(--container)); margin-inline:auto; }
+.container-narrow{ width:min(95%, 760px); margin-inline:auto; }
+main{ min-height:calc(100vh - var(--header-h) - 120px); padding-block:18px 32px; }
+
+/* Nav (from navbar.php) */
+.nav{
+  position: sticky; top:0; z-index:40;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  background: rgba(191, 221, 158, 0.85);
+  backdrop-filter: saturate(140%) blur(6px);
+  border-bottom:1px solid rgba(2,6,23,.06);
+  height: var(--header-h);
+  padding-inline: 16px;
+}
+.nav .brand a{ text-decoration:none; color:var(--text); font-weight:800; font-size:20px; }
+.nav .nav-links{ display:flex; gap:8px; list-style:none; margin:0; padding:0; }
+.nav .nav-links a{
+  display:inline-block; text-decoration:none; color:var(--text);
+  padding:10px 14px; border-radius:12px; font-weight:700; opacity:.9;
+}
+.nav .nav-links a:hover{ background:#606a60; }
+.nav .nav-actions{ display:flex; gap:10px; align-items:center; }
+.nav .user-name{ color:var(--muted); font-weight:700; }
+
+/* Buttons — own definitions (no Bootstrap needed) */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:10px 16px; border-radius:12px; border:1px solid transparent;
+  text-decoration:none; font-weight:800; cursor:pointer; transition:transform .05s, box-shadow .2s, filter .2s, border-color .2s;
+  user-select:none;
+}
+.btn:active{ transform: translateY(1px); }
+.btn-primary{
+  background: linear-gradient(180deg, var(--primary-600), var(--primary));
+  color:#fff; box-shadow: 0 8px 22px rgba(16,185,129,.25);
+}
+.btn-outline{
+  background:#fff; color:var(--text); border-color:#e5e7eb;
+}
+.btn-outline:hover{ border-color:var(--primary-600); box-shadow:0 0 0 4px var(--ring); }
+
+/* Optional small & full width variants if present in markup */
+.btn-sm{ padding:8px 12px; border-radius:10px; font-size:14px; }
+.w-100{ width:100%; }
+
+/* Forms */
+label, .form-label{ font-weight:700; margin-bottom:6px; display:block; }
+.form-control, input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="search"], textarea, select{
+  width:100%; padding:12px 14px; border-radius:12px; border:1px solid #e5e7eb; background:#fff; outline:0; transition:border-color .2s, box-shadow .2s;
+}
+.form-control:focus, input:focus, textarea:focus, select:focus{
+  border-color:var(--primary-600); box-shadow:0 0 0 4px var(--ring);
+}
+textarea{ min-height:120px; resize:vertical; }
+.mb-3{ margin-bottom:12px; }
+.mt-3{ margin-top:12px; }
+
+/* Cards (generic) */
+.card{
+  background:var(--surface); border:1px solid rgba(2,6,23,.06); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;
+}
+.card-body{ padding:16px; }
+
+/* Homepage list — article cards */
+.news-list{
+  display:grid; grid-template-columns: repeat(12, 1fr); gap:18px;
+}
+.news-list > article{
+  grid-column: span 6;
+  background:#fff; border:1px solid rgba(2,6,23,.06); border-radius:16px; box-shadow:var(--shadow);
+  overflow:hidden; display:grid; grid-template-columns: 160px 1fr; min-height:160px;
+}
+.news-list > article .thumb{ width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:1/1; }
+.news-list > article .content{ padding:14px 16px; }
+.news-list > article h2{ margin:6px 0 8px; font-size:clamp(18px,2.1vw,22px); font-weight:900; }
+.news-list > article .meta{ color:var(--muted); font-size:12px; margin-bottom:6px; }
+.news-list > article .excerpt{ color:#334155; margin:0 0 10px; }
+.news-list > article .btn{ padding:8px 12px; border-radius:10px; }
+
+@media (max-width:1000px){}
+
+/* Tables */
+.table{ width:100%; border-collapse: collapse; background:#fff; border:1px solid rgba(2,6,23,.06); border-radius:14px; overflow:hidden; box-shadow:var(--shadow); }
+.table th, .table td{ padding:12px 14px; border-bottom:1px solid #f1f5f9; text-align:start; }
+.table th{ background:#f8fafc; color:#0b1220; font-weight:800; }
+
+/* Alerts + error */
+.alert{ border:1px solid #fde68a; background:#fffbeb; color:#92400e; padding:12px 14px; border-radius:12px; box-shadow:var(--shadow); }
+.error{ color:#b91c1c; background:#fef2f2; border:1px solid #fecaca; padding:10px 12px; border-radius:12px; }
+
+/* Admin header helpers */
+.nav-admin .btn{ border-radius:10px; padding:8px 12px; }
+.badge.bg-info{ background:#ecfeff; color:#0f766e; padding:6px 10px; border-radius:999px; font-weight:800; }
+
+/* Footer */
+footer{ margin-top:auto; padding:18px 0; color:var(--muted); border-top:1px solid rgba(2,6,23,.06); background:#fff; }
+
+/* =======================
+   DROP-IN PATCH (no Bootstrap)
+   Targets (1) Search bar, (2) Dashboard cards, (3) Edit/Delete buttons, (4) News icon badge
+   Paste this at the END of your CSS file.
+   ======================= */
+
+/* 1) Search bar — works for any GET form with input name="q" or a .search wrapper */
+.search{ width:min(560px,100%); position:relative; margin: 10px auto; }
+.search .icon{
+  position:absolute; inset-inline-start:14px; top:50%; transform:translateY(-50%);
+  width:20px; height:20px; opacity:.65;
+}
+.search input[type="search"],
+.search input[name="q"],
+form[method="get"] input[name="q"]{
+  width:100%; padding:12px 16px; padding-inline-start:46px;
+  border-radius:999px; border:1px solid #e5e7eb;
+  background:#fff; color:#0f172a; outline:0;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.search input::placeholder,
+form[method="get"] input[name="q"]::placeholder{ color:#9ca3af; }
+.search input:focus,
+form[method="get"] input[name="q"]:focus{
+  border-color:#10b981; box-shadow:0 0 0 4px rgba(16,185,129,.25);
+}
+
+/* 2) Dashboard as cards — wrap your stats in .kpis or .stats and each item with .kpi or .stat */
+.kpis, .stats{
+  display:grid; grid-template-columns: repeat(4, 1fr); gap:14px;
+}
+.kpi, .stat{
+  background:linear-gradient(180deg,#ffffff,#fafafa);
+  border:1px solid #e5e7eb; border-radius:16px;
+  padding:16px; box-shadow:0 10px 28px rgba(0,0,0,.08);
+}
+.kpi .title, .stat .title{ color:#6b7280; font-size:12px; font-weight:900; margin-bottom:6px; }
+.kpi .value, .stat .value{ font-size: clamp(22px,3vw,30px); font-weight:900; color:#0b1220; }
+@media (max-width: 900px){}
+
+/* Optional admin header wrapper (if you have a container/header area) */
+.admin-header{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  background:#fff; border:1px solid #e5e7eb; border-radius:18px;
+  padding:14px 18px; box-shadow:0 10px 28px rgba(0,0,0,.08); margin-bottom:18px;
+}
+
+/* 3) Buttons — general + explicit edit/delete/restore */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:10px 16px; border-radius:12px; border:1px solid transparent;
+  font-weight:900; text-decoration:none; cursor:pointer; user-select:none;
+  transition: transform .05s, box-shadow .2s, border-color .2s, filter .2s;
+}
+.btn:active{ transform: translateY(1px); }
+.btn-primary{
+  background: linear-gradient(180deg,#10b981,#0ea36e);
+  color:#fff; box-shadow: 0 8px 22px rgba(16,185,129,.25);
+}
+.btn-outline{ background:#fff; color:#0f172a; border-color:#e5e7eb; }
+.btn-outline:hover{ border-color:#10b981; box-shadow:0 0 0 4px rgba(16,185,129,.25); }
+.btn-sm{ padding:8px 12px; border-radius:10px; font-size:14px; }
+.w-100{ width:100%; }
+
+.btn-danger{
+  background: linear-gradient(180deg,#fb7185,#e11d48); color:#fff;
+  border-color:transparent; box-shadow:0 8px 22px rgba(225,29,72,.25);
+}
+.btn-outline-dark{ background:#fff; color:#0b1220; border-color:#d1d5db; }
+.btn-outline-dark:hover{ border-color:#10b981; box-shadow:0 0 0 4px rgba(16,185,129,.25); }
+
+/* جعل حقل البحث والزر بجانب بعض (بدون تغيير HTML) */
+form.search{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(600px, 100%);
+  margin: 0 auto 16px;
+}
+form.search input[name="q"]{
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+form.search input[name="q"]::placeholder{ color:#9ca3af; }
+form.search input[name="q"]:focus{
+  border-color: #10b981;
+  box-shadow: 0 0 0 4px rgba(16,185,129,.25);
+  background: #fff;
+}
+form.search button[type="submit"]{
+  flex: 0 0 auto;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: linear-gradient(180deg, #10b981, #059669);
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  transition: filter .2s, transform .05s, box-shadow .2s;
+  box-shadow: 0 8px 20px rgba(16,185,129,.25);
+}
+form.search button[type="submit"]:hover{ filter: brightness(.98); }
+form.search button[type="submit"]:active{ transform: translateY(1px); }
+
+/* ===== Admin Header same style as main header ===== */
+.admin-header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--header-h, 68px);
+  background: rgba(255,255,255,.90);
+  backdrop-filter: saturate(140%) blur(6px);
+  border-bottom: 1px solid #e5e7eb;
+
+  border-radius: 0 !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding-inline: 0;
+}
+.admin-header > .container{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.admin-header .brand{
+  text-decoration: none;
+  color: #0f172a;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: .2px;
+  white-space: nowrap;
+}
+.nav-admin{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-admin .hello{ color:#6b7280; font-weight:800; }
+
+.badge.bg-info{
+  background: #ecfeff !important;
+  color: #0f766e !important;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  border: 1px solid #c7f9ff;
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:10px 16px; border-radius:12px; border:1px solid transparent;
+  font-weight:900; text-decoration:none; cursor:pointer;
+  transition: transform .05s, box-shadow .2s, border-color .2s, filter .2s;
+}
+.btn-sm{ padding:8px 12px; border-radius:10px; font-size:14px; }
+.btn-outline-dark{
+  background:#fff; color:#0b1220; border-color:#d1d5db;
+}
+.btn-outline-dark:hover{
+  border-color:#10b981; box-shadow:0 0 0 4px rgba(16,185,129,.25);
+}
+.btn-danger{
+  background: linear-gradient(180deg,#fb7185,#e11d48);
+  color:#fff; border-color:transparent;
+  box-shadow: 0 8px 22px rgba(225,29,72,.25);
+}
+.btn-danger:hover{ filter: brightness(.98);color:#a90f0f }
+.btn:active{ transform: translateY(1px); }
+
+main{ min-height: calc(100vh - var(--header-h,68px) - 120px); padding-block: 20px 34px; }
+
+/* ===== أزرار أكشن داخل جدول الأدمن ===== */
+.table td:last-child a.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:6px;
+  margin-inline: 4px;
+  text-decoration:none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  font-weight: 800;
+  transition: transform .05s, filter .2s, box-shadow .2s, border-color .2s;
+}
+.table td:last-child a.btn:active{ transform: translateY(1px); }
+.btn-small, .btn-sm{ padding: 8px 12px; border-radius: 10px; font-size: 14px; }
+.table td:last-child a.btn:not(.btn-danger){
+  background: linear-gradient(180deg, #10b981, #059669);
+  color:#fff;
+  box-shadow: 0 10px 22px rgba(16,185,129,.24);
+}
+.table td:last-child a.btn:not(.btn-danger):hover{ filter: brightness(.98); }
+.btn-danger{
+  background: linear-gradient(180deg, #fb7185, #e11d48);
+  color:#fff; border-color: transparent;
+  box-shadow: 0 10px 22px rgba(225,29,72,.25);
+}
+.btn-danger:hover{ filter: brightness(.98); }
+
+a.btn[href*="deleted_news.php"]{
+  background: linear-gradient(180deg, #f43f5e, #e11d48);
+  color:#fff; border-color: transparent;
+  box-shadow: 0 12px 28px rgba(225,29,72,.28);
+  padding: 10px 16px; border-radius: 12px; font-weight: 900;
+}
+
+/* تحسين صورة الخبر داخل جدول الأدمن */
+.table img.thumb{
+  width: 72px; height: 54px; object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(0,0,0,.10);
+  border: 1px solid #e5e7eb;
+}
+
+/* زر “قراءة المزيد” داخل الكارد في الرئيسية */
+.news-list > article .btn{
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 800;
+  background: linear-gradient(180deg, #10b981, #059669);
+  color:#fff; border:1px solid transparent;
+  box-shadow: 0 10px 22px rgba(16,185,129,.24);
+}
+.news-list > article .btn:hover{ filter: brightness(.98); }
+
+.btn-outline{
+  background:#fff; color:#0f172a; border-color:#e5e7eb;
+}
+.btn-outline:hover{
+  border-color:#71dbb7;
+  box-shadow: 0 0 0 4px rgba(16,185,129,.25);
+}
+
+/* === Custom Green Theme Overrides === */
+body { background-color:#eafaf1; color:#222; font-family: Arial, sans-serif; }
+header {
+  background: linear-gradient(90deg, #006400, #228B22);
+  color: white; padding: 15px; text-align: center;
+}
+header h1 { margin:0; font-size:28px; color:#9ce49c; }
+nav a { color:#3b8d6c; margin:0 10px; text-decoration:none; }
+nav a:hover { color:#2b8b5f; }
+button {
+  background-color:#659665; color:white; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;
+}
+button:hover { background-color:#14c1a7; }
+
+/* بطاقات الأخبار */
+.news-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+/* صورة داخل البطاقة */
+.news-card img,
+.card img,
+.single-cover,
+.news-thumb {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+}
+/* لو الصور داخل رابط */
+.news-card a img { display:block; }
+/* لمنع تمدّد الصورة بسبب حشوات داخلية */
+.news-card, .card { overflow: hidden; }
+
+/* ===================================================== */
+/* === FIX AT THE END: جعل الكارد عمودي والصورة 16:9 === */
+/* ===================================================== */
+
+.news-list{
+  display:grid !important;
+  gap:16px !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+}
+
+/* الكارد عمودي: صورة بالأعلى ثم المحتوى */
+.news-list > article.news-card{
+  display:flex !important;
+  flex-direction:column !important;
+  grid-column:auto !important;
+  min-height:auto !important;
+  overflow:hidden;
+  border-radius:12px;
+}
+
+/* الصورة تغطي بنسبة 16:9 */
+.news-list > article.news-card > img{
+  width:100% !important;
+  height:auto !important;
+  display:block !important;
+  aspect-ratio:16 / 9 !important;
+  object-fit:cover !important;
+  border-radius:0 !important;
+}
+
+/* جسم الكارد */
+.news-list > article.news-card .news-body{ padding:14px 16px; }
+
+/* نصوص أساسية داخل الكارد */
+.news-list > article.news-card h2{
+  margin:8px 0 6px;
+  font-size:clamp(18px,2.1vw,22px);
+  font-weight:900;
+}
+.news-list > article.news-card .meta{ opacity:.75; font-size:12px; margin-bottom:6px; }
+.news-list > article.news-card .excerpt{ margin:0 0 10px; }
