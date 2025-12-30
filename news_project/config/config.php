@@ -3,7 +3,7 @@ $ServerName ="localhost";
 $username="root";
 $password="";
 $dbname="schema";
-$conn= mysqli_connect($ServerName,$username,$password,$dbname);
+$conn = mysqli_connect("db", "root", "root", "nms_db");
 if(!$conn){
 echo ("فشل الاتصال".mysqli_connect_error());}
 /*else {
